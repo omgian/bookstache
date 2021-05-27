@@ -13,6 +13,14 @@ const PostSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  author:{
+    type: String,
+    require: true,
+  },
+  isbn:{
+    type: Number,
+    require: true, 
+  },
   caption: {
     type: String,
     required: true,
@@ -31,4 +39,4 @@ const PostSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Post", PostSchema);
+module.exports = mongoose.model("Book", PostSchema);
