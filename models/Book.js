@@ -9,10 +9,6 @@ const PostSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  cloudinaryId: {
-    type: String,
-    require: true,
-  },
   author:{
     type: String,
     require: true,
@@ -21,21 +17,13 @@ const PostSchema = new mongoose.Schema({
     type: Number,
     require: true, 
   },
-  caption: {
+  description: {
     type: String,
-    required: true,
-  },
-  likes: {
-    type: Number,
     required: true,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
   },
 });
 
