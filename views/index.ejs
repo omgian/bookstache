@@ -1,18 +1,23 @@
 <%- include('partials/header') -%>
-
-<main class="container">
-    <div class="row justify-content-around mt-5">
-        <!-- <a href="/login" class="col-3 btn btn-primary"> Login</a> -->
-        <!-- <a href="/signup" class="col-3 btn btn-primary"> Signup</a> -->
+<div class="container">
+  <div class="row mt-5">
+      <div class="col-6">
+        <ul class="row list-unstyled">
+        <% for(var i=0; i<books.length; i++) {%>
+          <li class="col-6 justify-content-between mt-5">
+              <img class="img-fluid" src="<%= books[i].image%>">
+              <span><%= books[i].title %></span>
+              <span><%= books[i].author %></span>
+              <!-- <span><%= books[i].description %></span> -->
+              
+          </li>
+        <% } %>
+        </ul>
+        <div class="row justify-content-center mt-5">
+          <a class="btn btn-primary" href="/feed">Return to Feed</a>
+        </div>  
+      </div>  
     </div>
-    <div class="mt-5">
-        <h2>Search for a book:</h2>
-
-        <form action="/search" method="POST">
-            <input type="text" placeholder="TITLE / ISBN / AUTHOR" name="bookName">
-            <input type="submit" value="submit">
-        </form>
-</main>
-    
-
+  </div>
+</div>
 <%- include('partials/footer') -%>

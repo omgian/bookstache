@@ -13,7 +13,11 @@ const PostSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  isbn:{
+  isbn10:{
+    type: Number,
+    require: true, 
+  },
+  isbn13:{
     type: Number,
     require: true, 
   },

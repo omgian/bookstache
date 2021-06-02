@@ -15,46 +15,43 @@ module.exports = {
       console.log(err);
     }
   },
+
+  //searching the book by its isbn using google book api
   searchByIsbn: async (req, res) => {
     console.log('searchies', req.query);
     // const https = require('https')
     const axios = require('axios')
-
+    const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${req.query.isbn}&key=${process.env.key}`;
+    console.log('url', url);
+    // https://www.googleapis.com/books/v1/volumes?q=isbn:9781454926580&key=AIzaSyCVZvhqM4af6piTKN88m0xPJj-pTtFX_D8
     axios
-      .get(`https://openlibrary.org/isbn/${req.query.isbn}.json`)
+      .get(url)
       .then(olResp => {
-        const book = olResp.data
+        let book = olResp.data
+        // seeing if the array has objects due to error 
+        if (book.items.length > 0 ){
+          book = book.items[0].volumeInfo
+        } else {
+          res.send({error: "not found"})
+        }
         console.log(book)
 
         const constructedBook = {
-          title: book.title,
-          image: `http://covers.openlibrary.org/b/id/${book.covers[0]}-M.jpg`,
-          author: book.by_statement,
-          isbn10 : book.isbn_10,
-          isbn13 : book.isbn_13,
-          description: book.description.value ? book.description.value : book.description
+          title: book.title ? book.title : "",
+          image: book.imageLinks ? book.imageLinks.thumbnail : "",
+          author: book.authors ? book.authors[0] : "n/a",
+          isbn10 : book.industryIdentifiers[0].identifier,
+          isbn13 : book.industryIdentifiers[1].identifier,
+          description: book.description,
         };
-
-        if(!constructedBook.author) {
-          /* make api call to get author stuff
-          axios.get(`authorURL`)
-          .then(AUTHORresponse () => {
-            const author = AUTHORresponse.data
-            log author
-            constructedBook.author = author.name
-            // then send the response of updated constructedBook
-            constructedBook.author = 'Gian'
-            res.send(constructedBook)
-          })
-          */
-          constructedBook.author = 'Gian'
-          res.send(constructedBook)
-        } else {
-          // otherwise, we have all the data
-          res.send(constructedBook)
-        }
-
-        
+          // res.send(constructedBook)
+          try {
+           Book.create(constructedBook);
+            console.log("Book has been added!");
+            res.send({status: 'saved'});
+          } catch (err) {
+            console.log(err);
+          }
       })
       .catch(error => {
         console.error(error)
@@ -65,38 +62,54 @@ module.exports = {
     })
 
   },
+
   getFeed: async (req, res) => {
     try {
       const sorting = await Book.find().sort({ title: "desc" }).lean();
-      res.render("feed.ejs", { posts: sorting });
+      res.render("feed.ejs", { books: sorting });
     } catch (err) {
       console.log(err);
     }
   },
-  // getPost: async (req, res) => {
-  //   try {
-  //     const search = await Book.findById(req.params.id);
-  //     res.render("index.ejs", { post: search });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // },
-  addBook: async (req, res) => {
+  getBook: async (req, res) => {
     try {
-      // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
-
+      const search = await Book.findById(req.params.id);
+      res.render("index.ejs", { post: search });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  addBook: async (req, res) => {
+    console.log("adding books",req.query)
+     try {
       await Book.create({
-        title: req.body.title,
-        image: result.secure_url,
-        description: req.body.description,
+        title: req.query.title,
+        image: req.query.image,
+        description: req.query.description,
+        isbn10: req.query.isbn10,
+        isbn13: req.query.isbn13,
+        author: req.query.author,
       });
-      console.log("Post has been added!");
+      console.log("Book has been added!");
       res.redirect("/admin");
     } catch (err) {
       console.log(err);
     }
   },
+
+    //   try {
+    //     res = await collection.updateOne(
+    //       {title: book.items[0].volumeInfo.title,},
+    //       {image: book.items[0].volumeInfo.imageLinks.thumbnail},
+    //       {author: book.items[0].volumeInfo.authors[0]},
+    //       {isbn10 : book.items[0].volumeInfo.industryIdentifiers[0].identifier},
+    //       {isbn13 : book.items[0].volumeInfo.industryIdentifiers[1].identifier},
+    //     );
+    //     console.log(`Updated ${res.result.n} documents`);
+    //   } catch (err) {
+    //     console.error(`Something went wrong: ${err}`);
+    //   }
+    // },
   likePost: async (req, res) => {
     try {
       await Post.findOneAndUpdate(

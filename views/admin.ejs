@@ -9,13 +9,16 @@
           </div>
           <div class="mt-5">
             <h2>Add a book</h2>
-            <form action="/book/searchByIsbn" enctype="multipart/form-data" method="POST">
+            <!-- <form action="/book/searchByIsbn" enctype="multipart/form-data" method="POST">
               <div class="mb-3">
                 <input type="text"></input>
-              </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-            </form>
+              </div> -->
+              <!-- <button type="submit" class="btn btn-primary" value="Upload">Submit</button> -->
+            <!-- </form> -->
           </div>
+          <button id="bookLookUp">Book</button>
+          <input type="text" placeholder="ISBN" name="isbn" id="inputIsbn">
+  
       </div>
       <div class="col-6">
         <ul class="row list-unstyled">
@@ -34,4 +37,6 @@
     </div>
   </div>
 </div>
+<script src='js/main.js'></script>
+
 <%- include('partials/footer') -%>
