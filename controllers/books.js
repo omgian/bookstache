@@ -27,6 +27,7 @@ module.exports = {
       .get(url)
       .then(olResp => {
         let book = olResp.data
+        //if there's no results from the google api 
         if (book.items.length > 0 ){
           book = book.items[0].volumeInfo
         } else {
