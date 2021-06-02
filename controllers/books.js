@@ -23,12 +23,10 @@ module.exports = {
     const axios = require('axios')
     const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${req.query.isbn}&key=${process.env.key}`;
     console.log('url', url);
-    // https://www.googleapis.com/books/v1/volumes?q=isbn:9781454926580&key=AIzaSyCVZvhqM4af6piTKN88m0xPJj-pTtFX_D8
     axios
       .get(url)
       .then(olResp => {
         let book = olResp.data
-        // seeing if the array has objects due to error 
         if (book.items.length > 0 ){
           book = book.items[0].volumeInfo
         } else {
