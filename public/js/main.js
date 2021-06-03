@@ -13,8 +13,11 @@ async function searchBook(){
             headers: {'Content-Type': 'application/json'},
           })
         const data = await response.json()
-        console.log(data)
+        console.log(data.status)
+        if ( data.status == 'saved') {
 
+        }
+        
     }catch(err){
         console.log(err)
     }

@@ -47,8 +47,13 @@ module.exports = {
           try {
            Book.create(constructedBook);
             console.log("Book has been added!");
-            res.send({status: 'saved'});
+            res.send(
+              { status: 'saved' }
+              );
           } catch (err) {
+            res.send(
+              "error"
+              );
             console.log(err);
           }
       })
