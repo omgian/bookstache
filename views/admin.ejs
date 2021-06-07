@@ -8,7 +8,7 @@
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
           </div>
           <div class="mt-5">
-            <h2>Add a book</h2>
+            <h2>Look for the Book</h2>
             <!-- <form action="/book/searchByIsbn" enctype="multipart/form-data" method="POST">
               <div class="mb-3">
                 <input type="text"></input>
@@ -16,7 +16,7 @@
               <!-- <button type="submit" class="btn btn-primary" value="Upload">Submit</button> -->
             <!-- </form> -->
           </div>
-          <button id="bookLookUp">Add</button>
+          <button id="bookLookUpButton">Search</button>
           <input type="text" placeholder="ISBN" name="isbn" id="inputIsbn">
   
       </div>
@@ -34,9 +34,24 @@
           <a class="btn btn-primary" href="/feed">Return to Feed</a>
         </div>  
       </div>  
+      <div class="container">
+        <div class="row justify-content-center mt-5">
+          <ul class="row list-unstyled">
+              <li class="col-6 justify-content-between mt-5">
+                <!--grabbing the object info from the data in the admin.js-->
+                <p id="title"></p>
+                <img id="image">
+                <p id="author"></p>
+                <p id="isbn10"></p>
+                <p id="isbn13"></p>
+                <p id="description"></p>
+              </li>
+            </ul>
+        </div>
+      </div>  
     </div>
   </div>
 </div>
-<script src='js/main.js'></script>
+<script src='js/admin.js'></script>
 
 <%- include('partials/footer') -%>

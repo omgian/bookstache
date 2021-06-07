@@ -9,4 +9,7 @@ module.exports = {
       console.log(err);
     }
   },
+  redirectHome: (req, res) => {
+      return res.redirect("/");
+    }
 };

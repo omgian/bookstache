@@ -43,19 +43,21 @@ module.exports = {
           isbn13 : book.industryIdentifiers[1].identifier,
           description: book.description,
         };
+        console.log(constructedBook)
+        res.send(constructedBook)
           // res.send(constructedBook)
-          try {
-           Book.create(constructedBook);
-            console.log("Book has been added!");
-            res.send(
-              { status: 'saved' }
-              );
-          } catch (err) {
-            res.send(
-              "error"
-              );
-            console.log(err);
-          }
+          // try {
+          //  Book.create(constructedBook);
+          //   console.log("Book has been added!");
+          //   res.send(
+          //     { status: 'saved' }
+          //     );
+          // } catch (err) {
+            // res.send(
+            //   "error"
+            //   );
+          //   console.log(err);
+          // }
       })
       .catch(error => {
         console.error(error)
