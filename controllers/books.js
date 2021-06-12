@@ -1,6 +1,7 @@
 const { Logger } = require("mongodb");
 const https = require('https')
 const Book = require("../models/Book");
+const { toUnicode } = require("punycode");
 
 module.exports = {
   getPost: async (req, res) => {
@@ -34,7 +35,6 @@ module.exports = {
           res.send({error: "not found"})
         }
         // console.log(book)
-
         const constructedBook = {
           title: book.title ? book.title : "",
           image: book.imageLinks ? book.imageLinks.thumbnail : "",
@@ -86,15 +86,15 @@ module.exports = {
   //   }
   // },
   addBook: async (req, res) => {
-    console.log(req.query)
+    console.log('body', req.body)
               try {
            Book.create({
-             title:req.query.title,
-             image: req.query.image,
-             author:req.query.author,
-             isbn10: req.query.isbn10,
-             isbn13: req.query.isbn13,
-             description: req.query.description,
+             title:req.body.title,
+             image: req.body.image,
+             author:req.body.author,
+             isbn10: req.body.isbn10,
+             isbn13: req.body.isbn13,
+             description: req.body.description,
            });
             console.log("Book has been added!");
             res.send(
@@ -105,63 +105,7 @@ module.exports = {
               "error"
               );
           }
-    // const axios = require ('axios')
-    // const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${req.query.isbn}&key=${process.env.key}`;
-    // const res = await axios.post('/admin.ejs')
-    // axios({
-    //   method: 'post',
-    //   url: url,
-    //   data: {
-    //     title: req.query.title,
-    //     image: req.query.image,
-    //     description: req.query.description,
-    //     isbn10: req.query.isbn10,
-    //     isbn13: req.query.isbn13,
-    //     author: req.query.author,
-    //   }
-    // });
-    // console.log("adding books",req.query)
-    // .then((response) => {
-    //   res.redirect("/admin")
-    //   console.log(response);
-    // }, (error) => {
-    //   console.log(error);
-    // });
-    //  try {
-    //   await Book.create({
-    //     title: book.title ? book.title : "",
-    //     image: book.imageLinks ? book.imageLinks.thumbnail : "",
-    //     author: book.authors ? book.authors[0] : "n/a",
-    //     isbn10 : book.industryIdentifiers[0].identifier,
-    //     isbn13 : book.industryIdentifiers[1].identifier,
-    //     description: book.description,
-        // title: req.query.title,
-        // image: req.query.image,
-        // description: req.query.description,
-        // isbn10: req.query.isbn10,
-        // isbn13: req.query.isbn13,
-        // author: req.query.author,
-      // });
-    //   console.log("Book has been added!");
-    //   res.redirect("/admin");
-    // } catch (err) {
-    //   console.log(err);
-    // }
   },
-
-    //   try {
-    //     res = await collection.updateOne(
-    //       {title: book.items[0].volumeInfo.title,},
-    //       {image: book.items[0].volumeInfo.imageLinks.thumbnail},
-    //       {author: book.items[0].volumeInfo.authors[0]},
-    //       {isbn10 : book.items[0].volumeInfo.industryIdentifiers[0].identifier},
-    //       {isbn13 : book.items[0].volumeInfo.industryIdentifiers[1].identifier},
-    //     );
-    //     console.log(`Updated ${res.result.n} documents`);
-    //   } catch (err) {
-    //     console.error(`Something went wrong: ${err}`);
-    //   }
-    // },
   likePost: async (req, res) => {
     try {
       await Post.findOneAndUpdate(
@@ -189,3 +133,6 @@ module.exports = {
     }
   },
 };
+
+
+// TODO look into doing a conditional for empty search instead of grabbing random book
