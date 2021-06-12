@@ -18,7 +18,7 @@ module.exports = {
 
   //searching the book by its isbn using google book api
   searchByIsbn: async (req, res) => {
-    console.log('searchies', req.query);
+    // console.log('searchies', req.query);
     // const https = require('https')
     const axios = require('axios')
     const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${req.query.isbn}&key=${process.env.key}`;
@@ -33,7 +33,7 @@ module.exports = {
         } else {
           res.send({error: "not found"})
         }
-        console.log(book)
+        // console.log(book)
 
         const constructedBook = {
           title: book.title ? book.title : "",
@@ -43,7 +43,7 @@ module.exports = {
           isbn13 : book.industryIdentifiers[1].identifier,
           description: book.description,
         };
-        console.log(constructedBook)
+        // console.log(constructedBook)
         res.send(constructedBook)
           // res.send(constructedBook)
           // try {
@@ -77,30 +77,76 @@ module.exports = {
       console.log(err);
     }
   },
-  getBook: async (req, res) => {
-    try {
-      const search = await Book.findById(req.params.id);
-      res.render("index.ejs", { post: search });
-    } catch (err) {
-      console.log(err);
-    }
-  },
+  // getBook: async (req, res) => {
+  //   try {
+  //     const search = await Book.findById(req.params.id);
+  //     res.render("index.ejs", { post: search });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // },
   addBook: async (req, res) => {
-    console.log("adding books",req.query)
-     try {
-      await Book.create({
-        title: req.query.title,
-        image: req.query.image,
-        description: req.query.description,
-        isbn10: req.query.isbn10,
-        isbn13: req.query.isbn13,
-        author: req.query.author,
-      });
-      console.log("Book has been added!");
-      res.redirect("/admin");
-    } catch (err) {
-      console.log(err);
-    }
+    console.log(req.query)
+              try {
+           Book.create({
+             title:req.query.title,
+             image: req.query.image,
+             author:req.query.author,
+             isbn10: req.query.isbn10,
+             isbn13: req.query.isbn13,
+             description: req.query.description,
+           });
+            console.log("Book has been added!");
+            res.send(
+              { status: 'saved' }
+              );
+          } catch (err) {
+            res.send(
+              "error"
+              );
+          }
+    // const axios = require ('axios')
+    // const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${req.query.isbn}&key=${process.env.key}`;
+    // const res = await axios.post('/admin.ejs')
+    // axios({
+    //   method: 'post',
+    //   url: url,
+    //   data: {
+    //     title: req.query.title,
+    //     image: req.query.image,
+    //     description: req.query.description,
+    //     isbn10: req.query.isbn10,
+    //     isbn13: req.query.isbn13,
+    //     author: req.query.author,
+    //   }
+    // });
+    // console.log("adding books",req.query)
+    // .then((response) => {
+    //   res.redirect("/admin")
+    //   console.log(response);
+    // }, (error) => {
+    //   console.log(error);
+    // });
+    //  try {
+    //   await Book.create({
+    //     title: book.title ? book.title : "",
+    //     image: book.imageLinks ? book.imageLinks.thumbnail : "",
+    //     author: book.authors ? book.authors[0] : "n/a",
+    //     isbn10 : book.industryIdentifiers[0].identifier,
+    //     isbn13 : book.industryIdentifiers[1].identifier,
+    //     description: book.description,
+        // title: req.query.title,
+        // image: req.query.image,
+        // description: req.query.description,
+        // isbn10: req.query.isbn10,
+        // isbn13: req.query.isbn13,
+        // author: req.query.author,
+      // });
+    //   console.log("Book has been added!");
+    //   res.redirect("/admin");
+    // } catch (err) {
+    //   console.log(err);
+    // }
   },
 
     //   try {

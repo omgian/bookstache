@@ -1,6 +1,8 @@
 const bookLookUp = document.querySelector("#bookLookUpButton")
 bookLookUp.addEventListener('click', searchBook)
 
+const addBook= document.querySelector("#addBook")
+addBook.addEventListener('click', addABook)
 
 async function searchBook(){
     const isbn = document.getElementById("inputIsbn").value 
@@ -24,3 +26,23 @@ async function searchBook(){
         console.log(err)
     }
 }
+
+// async function addABook(){
+//     // const isbn = document.getElementById("inputIsbn").value
+//     try{
+//         const response = await fetch(searchBook(), {
+//             method: 'post',
+//             headers: {'Content-Type': 'application/json'},
+//           })
+//         const data = await response.json()
+//         document.getElementById("title").innerHTML = data.title;
+//         document.getElementById("image").src = data.image;
+//         document.getElementById("author").innerHTML = data.author;
+//         document.getElementById("isbn10").innerHTML = data.isbn10;
+//         document.getElementById("isbn13").innerHTML = data.isbn13;
+//         document.getElementById("description").innerHTML = data.description;
+//         console.log(data)
+//     }catch(err){
+//         console.log(err)
+//     }
+// }
