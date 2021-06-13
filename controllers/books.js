@@ -4,11 +4,16 @@ const Book = require("../models/Book");
 const { toUnicode } = require("punycode");
 
 module.exports = {
-  getPost: async (req, res) => {
-    console.log('gettie');
-    res.send("test")
+  searchTitle: async (req, res) => {
+    try {
+      const posts = await Book.find({ title: req.query.title });
+      res.render("index.ejs", { posts: posts });
+    } catch (err) {
+      console.log(err);
+    }
   },
-  getProfile: async (req, res) => {
+  getAdminPage: async (req, res) => {
+    console.log('req', req)
     try {
       const posts = await Book.find({ user: req.user.id });
       res.render("admin.ejs", { posts: posts, user: req.user });

@@ -6,9 +6,46 @@ button.hidden {
     visibility: hidden;
   }
 
-
 img.bookcover {
-    object-fit: contain;
+    object-fit: cover;
+    width: 160px;
+    height: 160px;
+}
+.carousel-bookcover {
+    object-fit: cover;
+    height: 300px;
 }
 
+.card .title {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
 
+.card .author {
+    font-size: 13px;
+    color: gray;
+}
+
+.card {
+    border: none;
+}
+.carousel-caption {
+    text-shadow: 2px 2px 5px black;
+}
+
+.mb-3{
+    margin-top: 1rem;
+}
+
+.logo {
+    height: 50px;
+}
+
+.favs {
+    border: 2px solid #33B774;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    width: 40%;
+}

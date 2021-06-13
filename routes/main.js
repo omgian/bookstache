@@ -7,7 +7,7 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Main Routes - simplified for now
 router.get("/", homeController.getIndex);
-router.get("/admin", ensureAuth, booksController.getProfile);
+router.get("/admin", ensureAuth, booksController.getAdminPage);
 router.get("/feed", ensureAuth, booksController.getFeed);
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);

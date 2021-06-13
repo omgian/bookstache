@@ -1,45 +1,16 @@
-<%- include('partials/header') -%>
-<!-- <div class="container">
-    <div class="row justify-content-center mt-5">
-      <ul class="row list-unstyled">
-        <% for(var i=0; i<books.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-              <img class="img-fluid" src="<%= books[i].image%>">
-              <span> <%= books[i].title%> </span>
-              <p> <%= books[i].caption%> </p>
-          </li>
-        <% } %>
-        </ul>
-    </div>
-  </div>   -->
-<!-- <script src='js/feed.js'></script>-->
+<%- include('partials/header', {admin: false}) -%>
+
 <div class="container">
-  <div class="row row-cols-lg-3">
+  <div class="row row-cols-lg-4">
     <% for(var i=0; i<books.length; i++) {%>
     <div class="col-lg">
-      <!-- <img class="img-fluid" src="<%= books[i].image%>"> -->
-      <!-- <span> <%= books[i].title%> </span> -->
-      <!-- <p> <%= books[i].caption%> </p> -->
-      <div class="card mb-3 border-dark" style="max-width: 540px;">
-        <div class="card-header"> <%= books[i].title%></div>
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img class="bookcover" src="<%= books[i].image%>" alt="book cover for <%= books[i].title%> ">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <!-- <h5 class="card-title"> <%= books[i].title%> </h5> -->
-              <p class="card-text">Author: <%= books[i].author%></p>
-              <p class="card-text description" ><%= books[i].description.substring(0,130)%>
-              
-                <%if (books[i].description.length > 130) { %>
-                  ...
-                  <% } %>
-                  </p>
-              <!-- <a href="#" class="btn btn-primary">More Info</a> -->
-              <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-            </div>
-          </div>
+      <div class="card border-light text-center" style="width: 18rem;">
+        <div class="text-center">
+          <img src="<%= books[i].image%>" class="bookcover" alt="book cover for <%= books[i].title%>">
+        </div>
+        <div class="card-body">
+          <p class="card-text title"><%= books[i].title%></p>
+          <p class="card-text author"><%= books[i].author%></p>
         </div>
       </div>
     </div>

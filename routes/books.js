@@ -6,14 +6,14 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Post Routes - simplified for now
 router.get("/searchisbn", booksController.searchByIsbn);
-router.get("/:id", ensureAuth, booksController.getPost);
+// router.get("/:id", ensureAuth, booksController.getPost);
 router.post("/addBook", booksController.addBook);
 
 
 // router.post("/add", upload.single("file"), booksController.createPost);
 
-router.put("/likePost/:id", booksController.likePost);
+// router.put("/likePost/:id", booksController.likePost);
 
-router.delete("/deletePost/:id", booksController.deletePost);
+// router.delete("/deletePost/:id", booksController.deletePost);
 
 module.exports = router;

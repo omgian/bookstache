@@ -1,10 +1,10 @@
 const bookLookUp = document.querySelector("#bookLookUpButton")
-bookLookUp.addEventListener('click', searchBook)
+bookLookUp.addEventListener('click', lookUpBook)
 
 const addBook = document.querySelector("#addBook")
 addBook.addEventListener('click', addABook)
 
-async function searchBook() {
+async function lookUpBook() {
     const isbn = document.getElementById("inputIsbn").value
     // const cName = this.parentNode.childNodes[1].innerText
     // const iName = this.parentNode.childNodes[3].innerText
