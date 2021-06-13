@@ -1,25 +1,61 @@
 <%- include('partials/header') -%>
 <div class="container">
+  <div class="row row-cols-lg-3">
+    <% for(var i=0; i<books.length; i++) {%>
+    <div class="col-lg">
+      <div class="card mb-3 border-dark" style="max-width: 540px;">
+        <div class="card-header"> <%= books[i].title%></div>
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img class="bookcover" src="<%= books[i].image%>" alt="book cover for <%= books[i].title%> ">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <p class="card-text">Author: <%= books[i].author%></p>
+              <p class="card-text description"><%= books[i].description.substring(0,130)%>
+
+                <%if (books[i].description.length > 130) { %>
+                ...
+                <% } %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+<%- include('partials/footer') -%>
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
   <main class="container">
     <div class="row justify-content-around mt-5">
-        <a href="/login" class="col-3 btn btn-primary"> Login</a>
-        <!-- <a href="/signup" class="col-3 btn btn-primary"> Signup</a> -->
-    </div>
-  <div class="row mt-5">
+        <a href="/login" class="col-3 btn btn-primary"> Login</a> -->
+<!-- <a href="/signup" class="col-3 btn btn-primary"> Signup</a> -->
+<!-- </div> -->
+<!-- <div class="row mt-5">
       <div class="col-6">
         <ul class="row list-unstyled">
         <% for(var i=0; i<books.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
               <img class="img-fluid" src="<%= books[i].image%>">
               <span><%= books[i].title %></span>
-              <span><%= books[i].author %></span>
-              <!-- <span><%= books[i].description %></span> -->
-              
+              <span><%= books[i].author %></span> -->
+<!-- <span><%= books[i].description %></span> -->
+<!--               
           </li>
         <% } %>
         </ul>
       </div>  
     </div>
   </div>
-</div>
-<%- include('partials/footer') -%>
+</div> -->
