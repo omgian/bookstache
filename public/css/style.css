@@ -6,3 +6,9 @@ button.hidden {
     visibility: hidden;
   }
 
+
+img.bookcover {
+    object-fit: contain;
+}
+
+
