@@ -6,9 +6,6 @@ addBook.addEventListener('click', addABook)
 
 async function lookUpBook() {
     const isbn = document.getElementById("inputIsbn").value
-    // const cName = this.parentNode.childNodes[1].innerText
-    // const iName = this.parentNode.childNodes[3].innerText
-    // const tLikes = Number(this.parentNode.childNodes[5].innerText)
     try {
         const response = await fetch(`book/searchisbn?isbn=${isbn}`, {
             method: 'get',
@@ -23,7 +20,7 @@ async function lookUpBook() {
         document.getElementById("isbn10").innerHTML = data.isbn10;
         document.getElementById("isbn13").innerHTML = data.isbn13;
         document.getElementById("description").innerHTML = data.description;
-        console.log(data)
+        // console.log(data)
         if (data.title){
            const button = document.getElementById("addBook");
            button.classList.remove("hidden")
@@ -57,7 +54,7 @@ async function addABook() {
                     },
                 })
                 const data = await response.json()
-                console.log(data)
+                // console.log(data)
                 if (data.status === 'saved'){
                     window.location.href = "/feed"
                 }

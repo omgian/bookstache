@@ -9,7 +9,7 @@ router.get("/searchisbn", booksController.searchByIsbn);
 // router.get("/:id", ensureAuth, booksController.getPost);
 router.post("/addBook", booksController.addBook);
 
-
+router.put("/toggleFavoriteBook", booksController.toggleFavoriteBook)
 // router.post("/add", upload.single("file"), booksController.createPost);
 
 // router.put("/likePost/:id", booksController.likePost);

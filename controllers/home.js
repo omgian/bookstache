@@ -9,8 +9,8 @@ module.exports = {
       const results = await Book.find(query);
 
       const favBooks = await Book.find({favorite: true});
-      console.log('favBooks', favBooks)
-      res.render("index.ejs", { books: results, favBooks: favBooks, search: title });
+      // console.log('favBooks', favBooks)
+      res.render("index.ejs", { books: results, favBooks: favBooks, search: title});
     } catch (err) {
       console.log(err);
     }

@@ -5,6 +5,14 @@
     <% for(var i=0; i<books.length; i++) {%>
     <div class="col-lg">
       <div class="card border-light text-center" style="width: 18rem;">
+
+        <div class="favorite-toogle-container favId" onclick="toggleFavorite('<%= books[i]._id%>')">
+          <%if (books[i].favorite) { %>
+            <i class="fas fa-heart favorite-toggle"></i>
+          <% } else { %>
+            <i class="far fa-heart favorite-toggle"></i>
+          <% } %>
+        </div>
         <div class="text-center">
           <img src="<%= books[i].image%>" class="bookcover" alt="book cover for <%= books[i].title%>">
         </div>
@@ -17,6 +25,7 @@
     <% } %>
   </div>
 </div>
+<script src="js/feed.js"></script>
 <%- include('partials/footer') -%>
 
 <!-- TODO create a render that takes feed.ejs to index.ejs  -->

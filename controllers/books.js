@@ -4,14 +4,7 @@ const Book = require("../models/Book");
 const { toUnicode } = require("punycode");
 
 module.exports = {
-  searchTitle: async (req, res) => {
-    try {
-      const posts = await Book.find({ title: req.query.title });
-      res.render("index.ejs", { posts: posts });
-    } catch (err) {
-      console.log(err);
-    }
-  },
+
   getAdminPage: async (req, res) => {
     console.log('req', req)
     try {
@@ -111,16 +104,32 @@ module.exports = {
               );
           }
   },
-  likePost: async (req, res) => {
+  toggleFavoriteBook: async (req, res) => {
+    // const status = req.query.favorite
+    // console.log('current status ', status);
     try {
-      await Post.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $inc: { likes: 1 },
-        }
+     let bookToUpdate = await Book.findOne(
+        { _id: req.query.id },
       );
-      console.log("Likes +1");
-      res.redirect(`/post/${req.params.id}`);
+      console.log(bookToUpdate)
+      try {
+        await Book.findOneAndUpdate(
+          { _id: bookToUpdate._id },
+          {
+            $set: {
+              favorite: !bookToUpdate.favorite
+            }
+          },
+          // {
+          //   favorite: !status,
+          // }
+        );
+        console.log("marked as fav");
+        res.send({status:'saved'});
+      } catch (err) {
+        console.log(err);
+      }
+      // res.redirect(`/feed`);
     } catch (err) {
       console.log(err);
     }

@@ -20,7 +20,7 @@
       <% } else {%>
         <div class="carousel-item">
       <% } %>
-        <img src="<%= favBooks[i].image%>" class="d-block w-100 carousel-bookcover" alt="book cover for <%= books[i].title%>">
+        <img src="<%= favBooks[i].image%>" class="d-block w-100 carousel-bookcover" alt="book cover for <%= favBooks[i].title%>">
         <div class="carousel-caption d-none d-md-block">
           <h2><%= favBooks[i].title%></h2>
           <p><%= favBooks[i].author%></p>
@@ -46,8 +46,8 @@
 </div>
 <div class="container">
   <div class="input-group mb-3">
-    <input type="text" class="form-control" value="<%= search%>" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
-    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+    <input type="text" class="form-control" id="titleInput" value="<%= search%>" placeholder="Search by Title" aria-label="Search" aria-describedby="button-addon2">
+    <button class="btn btn-outline-secondary" id="searchBook" type="button" id="button-addon2">Search</button>
   </div>
 </div>
 <div class="container">
@@ -67,6 +67,7 @@
     <% } %>
   </div>
 </div>
+<script src="js/index.js"></script>
 <%- include('partials/footer') -%>
 
 

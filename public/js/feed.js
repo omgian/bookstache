@@ -1,24 +1,26 @@
-// const addBook = document.querySelector("#addBookButton")
-// addBook.addEventListener('click', searchBook)
+// const favBook = document.querySelector(".favId")
+// favBook.addEventListener('click', toggleFavorite)
 
+async function toggleFavorite(id) {
+    // console.log('id', id)
+    // const id = document.getElementByClass("favId").value
+    try {
+        const response = await fetch(`book/toggleFavoriteBook?id=${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        const data = await response.json()
+        console.log('toggle',data)
+        if (data.status === 'saved'){
+            window.location.href = "/feed"
+        }
+    } 
+    catch (err) {
+        console.log(err)
+    }
+}
 
-// async function searchBook(){
-//     const isbn = document.getElementById("inputIsbn").value 
-//     // const cName = this.parentNode.childNodes[1].innerText
-//     // const iName = this.parentNode.childNodes[3].innerText
-//     // const tLikes = Number(this.parentNode.childNodes[5].innerText)
-//     try{
-//         const response = await fetch(`book/searchisbn?isbn=${isbn}`, {
-//             method: 'get',
-//             headers: {'Content-Type': 'application/json'},
-//           })
-//         const data = await response.json()
-//         console.log(data.status)
-//         if ( data.status == 'saved') {
-
-//         }
-        
-//     }catch(err){
-//         console.log(err)
-//     }
-// }
+        // fetch put id 
+        // location.reload()

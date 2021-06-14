@@ -29,6 +29,10 @@ const PostSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  favorite: {
+    type:Boolean,
+    required:true,
+  }
 });
 
 module.exports = mongoose.model("Book", PostSchema);
