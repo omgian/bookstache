@@ -1,5 +1,5 @@
-<%- include('partials/header', {admin: false}) -%>
-<div class="container favs">
+<%- include('partials/header', {admin: admin}) -%>
+<div class="container favs col-lg-12">
   <h3>Yoan's Current Favorite Books</h3>
 
   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -51,11 +51,16 @@
   </div>
 </div>
 <div class="container">
-  <div class="row row-cols-lg-4">
+  <div class="row row-cols-lg-6">
     <% for(var i=0; i<books.length; i++) {%>
     <div class="col-lg">
-      <div class="card border-light text-center" style="width: 18rem;">
-        <div class="text-center">
+      <div class="card border-light text-center">
+        <div class="favorite-toogle-container">
+          <%if (books[i].favorite) { %>
+            <img class="favorite-toggle-index" src="imgs/bookmark-heart.png" alt="">
+          <% } %>
+        </div>
+        <div class="text-center book-cover-container">
           <img src="<%= books[i].image%>" class="bookcover" alt="book cover for <%= books[i].title%>">
         </div>
         <div class="card-body">

@@ -9,7 +9,7 @@ module.exports = {
     console.log('req', req)
     try {
       const posts = await Book.find({ user: req.user.id });
-      res.render("admin.ejs", { posts: posts, user: req.user });
+      res.render("admin.ejs", { posts: posts, user: req.user});
     } catch (err) {
       console.log(err);
     }
@@ -70,7 +70,7 @@ module.exports = {
   getFeed: async (req, res) => {
     try {
       const sorting = await Book.find().sort({ title: "desc" }).lean();
-      res.render("feed.ejs", { books: sorting });
+      res.render("feed.ejs", { books: sorting, admin: req.user });
     } catch (err) {
       console.log(err);
     }

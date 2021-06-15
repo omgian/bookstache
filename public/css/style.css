@@ -7,7 +7,7 @@ button.hidden {
   }
 
 img.bookcover {
-    object-fit: cover;
+    object-fit: contain;
     width: 160px;
     height: 160px;
 }
@@ -47,5 +47,29 @@ img.bookcover {
     border-radius: 5px;
     padding: 15px;
     text-align: center;
-    width: 40%;
+    /* width: 40%; */
 }
+
+.bookcover , .book-cover-container{
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+/* .favorite-toggle-index{
+position: absolute;
+top: 30px;
+left: 30px;
+z-index: 90;
+} */
+/* .icon-center {
+    text-align: center !important;
+} */
+
+.favorite-toggle-index {
+    position: absolute;
+    top: -5px;
+    left: 18px;
+    z-index: 90;
+    color: red;
+    text-shadow:3px 3px rgba(0,0,0)}

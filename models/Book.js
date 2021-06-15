@@ -31,7 +31,7 @@ const PostSchema = new mongoose.Schema({
   },
   favorite: {
     type:Boolean,
-    required:true,
+    required:false,
   }
 });
 
