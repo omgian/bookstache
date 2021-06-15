@@ -21,6 +21,3 @@ async function toggleFavorite(id) {
         console.log(err)
     }
 }
-
-        // fetch put id 
-        // location.reload()

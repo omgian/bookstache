@@ -18,5 +18,11 @@ module.exports = {
   },
   redirectHome: (req, res) => {
       return res.redirect("/");
-    }
+  },
+  getAbout: (req, res) => {
+    res.render("about.ejs", {admin:req.user});
+  }
 };
+
+
+

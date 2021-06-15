@@ -6,6 +6,10 @@ addBook.addEventListener('click', addABook)
 
 async function lookUpBook() {
     const isbn = document.getElementById("inputIsbn").value
+    if (isbn.length < 10) {
+        document.getElementById("title").innerHTML = "No book found by that ISBN";
+        return false;
+    }
     try {
         const response = await fetch(`book/searchisbn?isbn=${isbn}`, {
             method: 'get',
@@ -14,17 +18,19 @@ async function lookUpBook() {
             },
         })
         const data = await response.json()
-        document.getElementById("title").innerHTML = data.title;
-        document.getElementById("image").src = data.image;
-        document.getElementById("author").innerHTML = data.author;
-        document.getElementById("isbn10").innerHTML = data.isbn10;
-        document.getElementById("isbn13").innerHTML = data.isbn13;
-        document.getElementById("description").innerHTML = data.description;
-        // console.log(data)
         if (data.title){
-           const button = document.getElementById("addBook");
-           button.classList.remove("hidden")
+            document.getElementById("title").innerHTML = data.title;
+            document.getElementById("image").src = data.image;
+            document.getElementById("author").innerHTML = data.author;
+            document.getElementById("isbn10").innerHTML = data.isbn10;
+            document.getElementById("isbn13").innerHTML = data.isbn13;
+            document.getElementById("description").innerHTML = data.description;
+            const button = document.getElementById("addBook");
+            button.classList.remove("hidden")
+        } else {
+            document.getElementById("title").innerHTML = "No book found by that ISBN";
         }
+
     } catch (err) {
         console.log(err)
     }

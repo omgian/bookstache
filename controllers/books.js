@@ -21,18 +21,18 @@ module.exports = {
     // const https = require('https')
     const axios = require('axios')
     const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${req.query.isbn}&key=${process.env.key}`;
-    console.log('url', url);
+    // console.log('url', url);
     axios
       .get(url)
       .then(olResp => {
         let book = olResp.data
         //if there's no results from the google api 
-        if (book.items.length > 0 ){
+        if (book.items && book.items.length > 0 ){
           book = book.items[0].volumeInfo
         } else {
           res.send({error: "not found"})
         }
-        // console.log(book)
+        console.log(book)
         const constructedBook = {
           title: book.title ? book.title : "",
           image: book.imageLinks ? book.imageLinks.thumbnail : "",
@@ -43,19 +43,6 @@ module.exports = {
         };
         // console.log(constructedBook)
         res.send(constructedBook)
-          // res.send(constructedBook)
-          // try {
-          //  Book.create(constructedBook);
-          //   console.log("Book has been added!");
-          //   res.send(
-          //     { status: 'saved' }
-          //     );
-          // } catch (err) {
-            // res.send(
-            //   "error"
-            //   );
-          //   console.log(err);
-          // }
       })
       .catch(error => {
         console.error(error)
@@ -75,14 +62,16 @@ module.exports = {
       console.log(err);
     }
   },
-  // getBook: async (req, res) => {
-  //   try {
-  //     const search = await Book.findById(req.params.id);
-  //     res.render("index.ejs", { post: search });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // },
+
+  getBookInfo: async (req, res) => {
+    try {
+      const search = await Book.findById(req.query.id);
+      res.send(search);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
   addBook: async (req, res) => {
     console.log('body', req.body)
               try {
