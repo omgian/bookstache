@@ -123,16 +123,16 @@ module.exports = {
       console.log(err);
     }
   },
-  deletePost: async (req, res) => {
+  deleteBook: async (req, res) => {
     try {
       // Find post by id
-      let post = await Book.findById({ _id: req.params.id });
+      let post = await Book.findById({ _id: req.query.id });
       // Delete post from db
-      await Post.remove({ _id: req.params.id });
+      await Book.remove({ _id: req.query.id });
       console.log("Deleted Post");
-      res.redirect("/admin");
+      res.send({status:'deleted'});
     } catch (err) {
-      res.redirect("/admin");
+      res.send({status:'deleted'});
     }
   },
 };

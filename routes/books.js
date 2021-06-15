@@ -14,6 +14,6 @@ router.put("/toggleFavoriteBook", booksController.toggleFavoriteBook)
 
 // router.put("/likePost/:id", booksController.likePost);
 
-// router.delete("/deletePost/:id", booksController.deletePost);
+router.delete("/deleteBook", booksController.deleteBook);
 
 module.exports = router;

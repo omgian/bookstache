@@ -5,13 +5,18 @@
     <% for(var i=0; i<books.length; i++) {%>
     <div class="col-lg">
       <div class="card border-light text-center">
-
-        <div class="favorite-toogle-container" onclick="toggleFavorite('<%= books[i]._id%>')">
-          <%if (books[i].favorite) { %>
+        <div class="row">
+          <div class="favorite-toogle-container col" onclick="toggleFavorite('<%= books[i]._id%>')">
+            <%if (books[i].favorite) { %>
             <i class="fas fa-heart favorite-toggle"></i>
-          <% } else { %>
+            <% } else { %>
             <i class="far fa-heart favorite-toggle"></i>
-          <% } %>
+            <% } %>
+          </div>
+
+          <div class="delete-book col">
+            <i class="fas fa-trash-alt" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+          </div>
         </div>
         <div class="text-center">
           <img src="<%= books[i].image%>" class="bookcover" alt="book cover for <%= books[i].title%>">
@@ -24,6 +29,26 @@
     </div>
     <% } %>
   </div>
+  <!-- Modal -->
+  <div class="modal fade" id="deleteABookModal" tabindex="-1" aria-labelledby="deleteABookModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" onclick="deleteBook('<%= books[i]._id%>')" >Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
 <script src="js/feed.js"></script>
 <%- include('partials/footer') -%>

@@ -21,3 +21,22 @@ async function toggleFavorite(id) {
         console.log(err)
     }
 }
+
+async function deleteBook(id) {
+    try {
+        const response = await fetch(`book/deleteBook?id=${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        const data = await response.json()
+        console.log('delete',data)
+        if (data.status === 'deleted'){
+            window.location.href = "/feed"
+        }
+    } 
+    catch (err) {
+        console.log(err)
+    }
+}
