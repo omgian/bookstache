@@ -15,7 +15,11 @@
           </div>
 
           <div class="delete-book col">
-            <i class="fas fa-trash-alt" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+            <i class="fas fa-trash-alt" data-bs-toggle="modal" data-bs-target="#deleteABookModal" 
+            onclick="prepareBookForDelete({
+              title: '<%= books[i].title%>',
+              id: '<%= books[i]._id%>',
+            })"></i>
           </div>
         </div>
         <div class="text-center">
@@ -38,11 +42,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Are you sure you want to delete?
+          Are you sure you want to delete <strong><span id="deleteBookTitle"></span></strong>?
+          <input type="hidden" id="deleteBookId">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" onclick="deleteBook('<%= books[i]._id%>')" >Delete</button>
+          <button type="button" class="btn btn-danger" onclick="deleteBook()" >Delete</button>
         </div>
       </div>
     </div>
