@@ -1,7 +1,3 @@
-/* .hidden {
-    visibility:hidden,
-} */
-
 button.hidden {
     visibility: hidden;
   }
@@ -47,7 +43,6 @@ img.bookcover {
     border-radius: 5px;
     padding: 15px;
     text-align: center;
-    /* width: 40%; */
 }
 
 .bookcover , .book-cover-container{
@@ -56,15 +51,6 @@ img.bookcover {
     left: 0;
 }
 
-/* .favorite-toggle-index{
-position: absolute;
-top: 30px;
-left: 30px;
-z-index: 90;
-} */
-/* .icon-center {
-    text-align: center !important;
-} */
 .favorite-toggle{
     cursor: pointer;
 }
