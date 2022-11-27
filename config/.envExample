@@ -1,3 +1,4 @@
-    PORT = 8000
-    DB_STRING = <mongo DB>
-    key = <google books api key>
+PORT = 8000
+DB_STRING = <mongo DB>
+key = <google books api key>
+DB_STRING = <mongodb.net db string>
